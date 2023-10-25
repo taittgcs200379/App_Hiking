@@ -1,14 +1,14 @@
 package com.example.m_expense;
 
 public class ObservationModel {
-    private String id, id2, observeChoice, date, time,comment;
-    public ObservationModel(String observationId, String observationId2, String observationTitle,  String observationDate, String observationTime,  String observationComment) {
-        this.id= observationId;
-        this.id2=observationId2;
-        this.observeChoice= observationTitle;
-        this.date=observationDate;
-        this.time=observationTime;
-        this.comment=observationComment;
+    private String id, id2, observe, date, time,comment;
+    public ObservationModel(String Id, String Id2, String Title,  String Date, String Time,  String Comment) {
+        this.id= Id;
+        this.id2=Id2;
+        this.observe= Title;
+        this.date=Date;
+        this.time=Time;
+        this.comment=Comment;
     }
 
     public String getId() {return id;}
@@ -26,11 +26,11 @@ public class ObservationModel {
     }
 
     public String getObserveChoice() {
-        return observeChoice;
+        return observe;
     }
 
-    public void setObserveChoice(String observeChoice) {
-        this.observeChoice = observeChoice;
+    public void setObserveChoice(String observe) {
+        this.observe = observe;
     }
 
     public String getDate() {

@@ -58,13 +58,13 @@ public class AdapterObservation extends RecyclerView.Adapter<AdapterObservation.
             @Override
             public void onClick(View view) {
                 Intent edit = new Intent(context, ObserveCreator.class);
-                edit.putExtra("observeId",id);
-                edit.putExtra("observeId2",id2);
+                edit.putExtra("Id",id);
+                edit.putExtra("Id2",id2);
                 edit.putExtra("name",name);
                 edit.putExtra("date",date);
                 edit.putExtra("time",time);
                 edit.putExtra("comment",comment);
-                edit.putExtra("EditMode",true);
+                edit.putExtra("Edit",true);
                 context.startActivity(edit);
                 ((DetailsOfHike)context).onResume();
             }

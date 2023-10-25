@@ -2,7 +2,6 @@ package com.example.m_expense;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -40,8 +39,8 @@ public class DetailOfObservation extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem list = menu.findItem(R.id.AccessList);
-        MenuItem creator =menu.findItem(R.id.HikingCreator);
+        MenuItem list = menu.findItem(R.id.Hike_List);
+        MenuItem creator =menu.findItem(R.id.Make_Hike);
         list.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {

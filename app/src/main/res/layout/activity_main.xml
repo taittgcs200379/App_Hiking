@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/name_of_hike"
-        app:layout_constraintBottom_toTopOf="@+id/TripName"
+        app:layout_constraintBottom_toTopOf="@+id/nameOftrip"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,9 +25,9 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="23dp"
         android:text="@string/destination"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText"
+        app:layout_constraintBottom_toTopOf="@+id/Location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TripName" />
+        app:layout_constraintTop_toBottomOf="@+id/nameOftrip" />
 
     <TextView
         android:id="@+id/textView9"
@@ -36,7 +36,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="23dp"
         android:text="@string/parking"
-        app:layout_constraintBottom_toTopOf="@+id/choice"
+        app:layout_constraintBottom_toTopOf="@+id/Parking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/level" />
 
@@ -50,10 +50,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/Description" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/Location"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="40dp"
@@ -75,7 +75,7 @@
         android:text="@string/date_of_hike"
         app:layout_constraintBottom_toTopOf="@+id/date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/Location" />
 
     <TextView
         android:id="@+id/textView2"
@@ -84,12 +84,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginBottom="28dp"
         android:text="@string/note"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/Description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice" />
+        app:layout_constraintTop_toBottomOf="@+id/Parking" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/Description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
@@ -104,7 +104,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
-        android:id="@+id/TripName"
+        android:id="@+id/nameOftrip"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="39dp"
@@ -137,7 +137,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginEnd="27dp"
         android:layout_marginBottom="16dp"
-        android:editable="false"
+
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +173,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="23dp"
         android:layout_marginBottom="56dp"
-        android:editable="false"
+
         app:layout_constraintBottom_toTopOf="@+id/textView3"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -185,20 +185,20 @@
         android:layout_marginStart="21dp"
         android:layout_marginEnd="21dp"
         android:layout_marginBottom="14dp"
-        android:editable="false"
+
         app:layout_constraintBottom_toTopOf="@+id/textView9"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <AutoCompleteTextView
-        android:id="@+id/choice"
+        android:id="@+id/Parking"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="22dp"
         android:layout_marginEnd="22dp"
         android:layout_marginBottom="12dp"
-        android:editable="false"
+
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

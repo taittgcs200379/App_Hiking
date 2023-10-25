@@ -12,28 +12,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 
-import java.util.Date;
-
 public class MainActivity extends AppCompatActivity {
-    private static final String[] Length={"1000m", "2000m", "3000m"};
-    private static final String[] Level={"beginner", "professional"};
-    private static final String[] Choice={"Yes", "No"};
 
-    public boolean EditMode;
 
-    String  uId, uName, uDestination, uDate, uLength, uLevel, uChoice, uDescription;
+    public boolean Edit;
+
+    String  updateId, updateName, updateDestination, updateDate, updateLength, updateLevel, updateChoice, updateDescription;
     EditText name, destination, description;
     AutoCompleteTextView date,length,level,choice;
 
@@ -45,76 +37,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AutoCompleteTextView pLength= (AutoCompleteTextView)findViewById(R.id.length);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Length);
-        dataAdapter.setDropDownViewResource((android.R.layout.simple_dropdown_item_1line));
-        pLength.setAdapter(dataAdapter);
-        pLength.setThreshold(256);
-
-        findViewById(R.id.length).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View view){
-                pLength.showDropDown();
-            }
-        });
-
-
-        AutoCompleteTextView pLevel= (AutoCompleteTextView)findViewById(R.id.level);
-        ArrayAdapter<String> levelAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Level);
-        dataAdapter.setDropDownViewResource((android.R.layout.simple_dropdown_item_1line));
-        pLevel.setAdapter(levelAdapter);
-        pLevel.setThreshold(256);
-
-        findViewById(R.id.level).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View view){
-                pLevel.showDropDown();
-            }
-        });
-
-        AutoCompleteTextView pChoice= (AutoCompleteTextView)findViewById(R.id.choice);
-        ArrayAdapter<String> choiceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Choice);
-        //dataAdapter.setDropDownViewResource((android.R.layout.simple_dropdown_item_1line));
-        pChoice.setAdapter(choiceAdapter);
-        pChoice.setThreshold(256);
-
-        findViewById(R.id.choice).setOnClickListener(new OnClickListener(){
-            @Override
-            public void onClick(View view){
-                pChoice.showDropDown();
-            }
-        });
-
-
-        name=findViewById(R.id.TripName);
-        destination=findViewById(R.id.editTextText);
+        name=findViewById(R.id.nameOftrip);
+        destination=findViewById(R.id.Location);
         date=findViewById(R.id.date);
         btDate=findViewById(R.id.date_button);
         length=findViewById(R.id.length);
         level=findViewById(R.id.level);
-        choice=findViewById(R.id.choice);
-        description=findViewById(R.id.editTextTextMultiLine);
+        choice=findViewById(R.id.Parking);
+        description=findViewById(R.id.Description);
         Intent edit=getIntent();
-        EditMode= edit.getBooleanExtra("EditMode",false);
+        Edit= edit.getBooleanExtra("Edit",false);
 
-        if(EditMode){
-            uId=edit.getStringExtra("hike_id");
-            uName=edit.getStringExtra("name");
-            uDestination=edit.getStringExtra("destination");
-            uDate=edit.getStringExtra("date");
-            uLevel=edit.getStringExtra("level");
-            uLength=edit.getStringExtra("length");
-            uChoice=edit.getStringExtra("choice");
-            uDescription=edit.getStringExtra("description");
+        if(Edit){
+            updateId=edit.getStringExtra("id");
+            updateName=edit.getStringExtra("name");
+            updateDestination=edit.getStringExtra("destination");
+            updateDate=edit.getStringExtra("date");
+            updateLevel=edit.getStringExtra("level");
+            updateLength=edit.getStringExtra("length");
+            updateChoice=edit.getStringExtra("choice");
+            updateDescription=edit.getStringExtra("description");
 
 
-            name.setText(uName);
-            destination.setText(uDestination);
-            date.setText(uDate);
-            length.setText(uLength);
-            level.setText(uLevel);
-            choice.setText(uChoice);
-            description.setText(uDescription);
+            name.setText(updateName);
+            destination.setText(updateDestination);
+            date.setText(updateDate);
+            length.setText(updateLength);
+            level.setText(updateLevel);
+            choice.setText(updateChoice);
+            description.setText(updateDescription);
         }
 
         btDate.setOnClickListener(new OnClickListener() {
@@ -140,14 +91,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleButtonClick(View v){
-        EditText editText2= (EditText)findViewById(R.id.TripName);
+        EditText editText2= (EditText)findViewById(R.id.nameOftrip);
 
         if(TextUtils.isEmpty(editText2.getText().toString())){
             Toast t= Toast.makeText(this, "you must choose name of trip", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
-        EditText editText=(EditText)findViewById(R.id.editTextText);
+        EditText editText=(EditText)findViewById(R.id.Location);
         if(TextUtils.isEmpty(editText.getText().toString())){
             Toast t= Toast.makeText(this, "you must choose destination", Toast.LENGTH_SHORT);
             t.show();
@@ -173,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        AutoCompleteTextView rg=(AutoCompleteTextView) findViewById(R.id.choice);
+        AutoCompleteTextView rg=(AutoCompleteTextView) findViewById(R.id.Parking);
         if(TextUtils.isEmpty(level.getText().toString())){
             Toast t= Toast.makeText(this, "you must choose your option", Toast.LENGTH_SHORT);
             t.show();
@@ -186,30 +137,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void displayAlert(){
-        EditText mName = (EditText)findViewById(R.id.TripName);
-        String name= mName.getText().toString();
-        EditText mDestination = (EditText)findViewById(R.id.editTextText);
-        String destination= mDestination.getText().toString();
-        EditText eDate = (EditText)findViewById(R.id.date);
-        String date= eDate.getText().toString();
-        EditText eLength = (EditText)findViewById(R.id.length);
-        String length= eLength.getText().toString();
-        EditText eLevel = (EditText)findViewById(R.id.level);
-        String levels= eLevel.getText().toString();
-        AutoCompleteTextView eChoice= (AutoCompleteTextView) findViewById(R.id.choice);
-        String choice= eChoice.getText().toString();
-        EditText eDescription = (EditText)findViewById(R.id.editTextTextMultiLine);
-        String description= eDescription.getText().toString();
+        EditText Name = (EditText)findViewById(R.id.nameOftrip);
+        String name= Name.getText().toString();
+        EditText Location = (EditText)findViewById(R.id.Location);
+        String location= Location.getText().toString();
+        EditText Date = (EditText)findViewById(R.id.date);
+        String date= Date.getText().toString();
+        EditText Length = (EditText)findViewById(R.id.length);
+        String length= Length.getText().toString();
+        EditText Level = (EditText)findViewById(R.id.level);
+        String levels= Level.getText().toString();
+        AutoCompleteTextView Parking= (AutoCompleteTextView) findViewById(R.id.Parking);
+        String parking= Parking.getText().toString();
+        EditText Description = (EditText)findViewById(R.id.Description);
+        String description= Description.getText().toString();
 
         new AlertDialog.Builder(this)
-                .setTitle("Details of order")
+                .setTitle("Details ")
                 .setMessage("Details enter:\n" +
                         name+"\n"+
-                        destination+"\n"+
+                        location+"\n"+
                         date+"\n"+
                         length+"\n"+
                         levels+"\n"+
-                        choice+"\n"+
+                        parking+"\n"+
                         description+"\n"
                 ).setNeutralButton("back", new DialogInterface.OnClickListener() {
                     @Override
@@ -220,45 +171,11 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    private void  saveDetails(){
-        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
-        EditText hikeName =(EditText) findViewById(R.id.TripName);
-        EditText hikeDestination=(EditText) findViewById(R.id.editTextText);
-        AutoCompleteTextView hikeDate =(AutoCompleteTextView) findViewById(R.id.date);
-        AutoCompleteTextView hikeLength =(AutoCompleteTextView) findViewById(R.id.length);
-        AutoCompleteTextView hikeLevel =(AutoCompleteTextView) findViewById(R.id.level);
-        AutoCompleteTextView parkingChoice =(AutoCompleteTextView) findViewById(R.id.choice);
-        EditText hikeDescription=(EditText) findViewById(R.id.editTextTextMultiLine);
-
-
-        String name = hikeName.getText().toString();
-        String destination =hikeDestination.getText().toString();
-        String date = hikeDate.getText().toString();
-        String length = hikeLength.getText().toString();
-        String level = hikeLevel.getText().toString();
-        String choice = parkingChoice.getText().toString();
-        String description = hikeDescription.getText().toString();
-
-
-
-
-            if(EditMode){
-
-                dbHelper.updateHikeDetails(""+uId,name,destination,date,length,level,choice,description);
-                Toast.makeText(this, "Hiking trip has been updated" , Toast.LENGTH_LONG).show();
-            }
-            else{
-                long hikeId = dbHelper.insertHikeDetails(name,destination,date,length,level,choice,description);
-                Toast.makeText(this, "Hiking trip has been created with id: " + hikeId, Toast.LENGTH_LONG).show();
-            }
-
-
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem list = menu.findItem(R.id.AccessList);
-        MenuItem creator =menu.findItem(R.id.HikingCreator);
+        MenuItem list = menu.findItem(R.id.Hike_List);
+        MenuItem creator =menu.findItem(R.id.Make_Hike);
         list.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
@@ -279,6 +196,39 @@ public class MainActivity extends AppCompatActivity {
         });
         return super.onCreateOptionsMenu(menu);
     }
+    private void  saveDetails(){
+        DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
+        EditText hikeName =(EditText) findViewById(R.id.nameOftrip);
+        EditText hikeDestination=(EditText) findViewById(R.id.Location);
+        AutoCompleteTextView hikeDate =(AutoCompleteTextView) findViewById(R.id.date);
+        AutoCompleteTextView hikeLength =(AutoCompleteTextView) findViewById(R.id.length);
+        AutoCompleteTextView hikeLevel =(AutoCompleteTextView) findViewById(R.id.level);
+        AutoCompleteTextView parkingChoice =(AutoCompleteTextView) findViewById(R.id.Parking);
+        EditText hikeDescription=(EditText) findViewById(R.id.Description);
+        String name = hikeName.getText().toString();
+        String destination =hikeDestination.getText().toString();
+        String date = hikeDate.getText().toString();
+        String length = hikeLength.getText().toString();
+        String level = hikeLevel.getText().toString();
+        String choice = parkingChoice.getText().toString();
+        String description = hikeDescription.getText().toString();
+
+
+
+
+            if(Edit){
+
+                dbHelper.updateHikeDetails(""+updateId,name,destination,date,length,level,choice,description);
+                Toast.makeText(this, "Hiking trip has been updated" , Toast.LENGTH_LONG).show();
+            }
+            else{
+                long hikeId = dbHelper.insertHikeDetails(name,destination,date,length,level,choice,description);
+                Toast.makeText(this, "Hiking trip has been created with: " , Toast.LENGTH_LONG).show();
+            }
+
+
+    }
+
 
 
 

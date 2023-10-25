@@ -76,6 +76,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         rowValues.put(HIKE_COLUMN_DESCRIPTION, description);
         return database.insertOrThrow(HIKE_TABLE_NAME, null, rowValues);
     }
+    public long insertObservationDetails(String foreignKey, String name, String date, String time, String comment){
+        ContentValues rowValues = new ContentValues();
+        rowValues.put(OBSERVATION_FOREIGN_ID, foreignKey);
+        rowValues.put(OBSERVATION_COLUMN_NAME, name);
+        rowValues.put(OBSERVATION_COLUMN_DATE, date);
+        rowValues.put(OBSERVATION_COLUMN_TIME, time);
+        rowValues.put(OBSERVATION_COLUMN_DESCRIPTION, comment);
+
+        return database.insertOrThrow(OBSERVATION_TABLE_NAME, null, rowValues);
+    }
+
     public long updateHikeDetails(String id,String name, String destination, String date, String length, String level, String choice, String description){
         ContentValues rowValues = new ContentValues();
         rowValues.put(HIKE_COLUMN_NAME, name);
@@ -89,19 +100,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     }
+    public long updateObservationDetails(String id,String foreignId, String name, String date, String time,  String comment){
+        ContentValues rowValues = new ContentValues();
+        rowValues.put(OBSERVATION_FOREIGN_ID, foreignId);
+        rowValues.put(OBSERVATION_COLUMN_NAME, name);
+        rowValues.put(OBSERVATION_COLUMN_DATE, date);
+        rowValues.put(OBSERVATION_COLUMN_TIME,time);
+        rowValues.put(OBSERVATION_COLUMN_DESCRIPTION,comment);
+
+        return database.update(OBSERVATION_TABLE_NAME,rowValues,OBSERVATION_ID+" =? ", new String[]{id});
+
+
+    }
     public long deleteHikeDetails(String id){
         return database.delete(HIKE_TABLE_NAME,HIKE_COLUMN_ID+" =? ", new String[]{id});
     }
 
-    public long insertObservationDetails(String foreignKey, String name, String date, String time, String comment){
-        ContentValues rowValues = new ContentValues();
-        rowValues.put(OBSERVATION_FOREIGN_ID, foreignKey);
-        rowValues.put(OBSERVATION_COLUMN_NAME, name);
-        rowValues.put(OBSERVATION_COLUMN_DATE, date);
-        rowValues.put(OBSERVATION_COLUMN_TIME, time);
-        rowValues.put(OBSERVATION_COLUMN_DESCRIPTION, comment);
-        return database.insertOrThrow(OBSERVATION_TABLE_NAME, null, rowValues);
-    }
 
     public ArrayList<HikingModel>getAllData(){
         ArrayList<HikingModel> arrayList =new ArrayList<>();
@@ -175,18 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return arrayList;
     }
-    public long updateObservationDetails(String id,String foreignId, String name, String date, String time,  String comment){
-        ContentValues rowValues = new ContentValues();
-        rowValues.put(OBSERVATION_FOREIGN_ID, foreignId);
-        rowValues.put(OBSERVATION_COLUMN_NAME, name);
-        rowValues.put(OBSERVATION_COLUMN_DATE, date);
-        rowValues.put(OBSERVATION_COLUMN_TIME,time);
-        rowValues.put(OBSERVATION_COLUMN_DESCRIPTION,comment);
 
-        return database.update(OBSERVATION_TABLE_NAME,rowValues,OBSERVATION_ID+" =? ", new String[]{id});
-
-
-    }
     public long deleteObservationDetails(String id){
         return database.delete(OBSERVATION_TABLE_NAME,OBSERVATION_ID+" =? ", new String[]{id});
     }

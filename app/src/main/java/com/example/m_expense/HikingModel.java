@@ -1,80 +1,80 @@
 package com.example.m_expense;
 
 public class HikingModel {
-    private String hikingId, hikingName, hikingDestination, hikingDate, hikingLength, hikingLevel, parkingChoice, hikingDescription;
+    private String Id, Name, Destination, Date, Length, Level, Choice, Description;
 
     public HikingModel(String hikingId, String hikingName, String hikingDestination, String hikingDate, String hikingLength, String hikingLevel, String parkingChoice, String hikingDescription) {
-        this.hikingId = hikingId;
-        this.hikingName = hikingName;
-        this.hikingDestination = hikingDestination;
-        this.hikingDate = hikingDate;
-        this.hikingLength = hikingLength;
-        this.hikingLevel = hikingLevel;
-        this.parkingChoice = parkingChoice;
-        this.hikingDescription = hikingDescription;
+        this.Id = hikingId;
+        this.Name = hikingName;
+        this.Destination = hikingDestination;
+        this.Date = hikingDate;
+        this.Length = hikingLength;
+        this.Level = hikingLevel;
+        this.Choice = parkingChoice;
+        this.Description = hikingDescription;
     }
 
     public String getHikingId() {
-        return hikingId;
+        return Id;
     }
 
     public void setHikingId() {
-        this.hikingId = hikingId;
+        this.Id = Id;
     }
 
     public String getHikingName() {
-        return hikingName;
+        return Name;
     }
 
     public void setHikingName(String hikingName) {
-        this.hikingName = hikingName;
+        this.Name = hikingName;
     }
 
     public String getHikingDestination() {
-        return hikingDestination;
+        return Destination;
     }
 
     public void setHikingDestination(String hikingDestination) {
-        this.hikingDestination = hikingDestination;
+        this.Destination = hikingDestination;
     }
 
     public String getHikingDate() {
-        return hikingDate;
+        return Date;
     }
 
     public void setHikingDate(String hikingDate) {
-        this.hikingDate = hikingDate;
+        this.Date = hikingDate;
     }
 
     public String getHikingLength() {
-        return hikingLength;
+        return Length;
     }
 
     public void setHikingLength(String hikingLength) {
-        this.hikingLength = hikingLength;
+        this.Length = hikingLength;
     }
 
     public String getHikingLevel() {
-        return hikingLevel;
+        return Level;
     }
 
     public void setHikingLevel(String hikingLevel) {
-        this.hikingLevel = hikingLevel;
+        this.Level = hikingLevel;
     }
 
     public String getParkingChoice() {
-        return parkingChoice;
+        return Choice;
     }
 
     public void setParkingChoice(String parkingChoice) {
-        this.parkingChoice = parkingChoice;
+        this.Choice = parkingChoice;
     }
 
     public String getHikingDescription() {
-        return hikingDescription;
+        return Description;
     }
 
     public void setHikingDescription(String hikingDescription) {
-        this.hikingDescription = hikingDescription;
+        this.Description = hikingDescription;
     }
 }

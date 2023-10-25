@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,11 +25,11 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.Locale;
 
 public class ObserveCreator extends AppCompatActivity {
-    String id,id2,oTitle, oDate,oTime,oComment;
+    String id,Pid,observationTitle, observationDate,observationTime,observationComment;
 
-    public boolean SendData, EditMode;
-    private static final String[] Observation={"Sightings of animals", "Types of vegetation", "Weather conditions","Conditions of the trails"};
-    AutoCompleteTextView ObservationTitle,ObservationDate, ObservationTime;
+    public boolean Send, Edit;
+
+    AutoCompleteTextView Title,Date, Time;
     EditText ObservationComment;
     Button dateButton,timeButton;
     int hour, minute;
@@ -41,48 +40,37 @@ public class ObserveCreator extends AppCompatActivity {
 
         dateButton=findViewById(R.id.observeDate);
         timeButton=findViewById(R.id.time_button);
-        ObservationTitle=findViewById(R.id.observation_creator);
-        ObservationDate=findViewById(R.id.observation_date);
-        ObservationTime=findViewById(R.id.time);
+        Title=findViewById(R.id.observation_creator);
+        Date=findViewById(R.id.observation_date);
+        Time=findViewById(R.id.time);
         ObservationComment=findViewById(R.id.comment);
 
         Intent t=getIntent();
-        SendData= t.getBooleanExtra("SendData",false);
+        Send= t.getBooleanExtra("Save",false);
         Intent edit=getIntent();
-        EditMode=edit.getBooleanExtra("EditMode",false);
+        Edit=edit.getBooleanExtra("Edit",false);
 
-        if(SendData){
-            id2=t.getStringExtra("hike_id");
-            oDate=t.getStringExtra("date");
+        if(Send){
+            Pid=t.getStringExtra("hike_id");
+            observationDate=t.getStringExtra("date");
 
-            ObservationDate.setText(oDate);
+            Date.setText(observationDate);
         }
-        if(EditMode){
-            id=edit.getStringExtra("observeId");
-            id2=edit.getStringExtra("observeId2");
-            oTitle=edit.getStringExtra("name");
-            oDate=edit.getStringExtra("date");
-            oTime=edit.getStringExtra("time");
-            oComment=edit.getStringExtra("comment");
+        if(Edit){
+            id=edit.getStringExtra("Id");
+            Pid=edit.getStringExtra("Id2");
+            observationTitle=edit.getStringExtra("name");
+            observationDate=edit.getStringExtra("date");
+            observationTime=edit.getStringExtra("time");
+            observationComment=edit.getStringExtra("comment");
 
-            ObservationTitle.setText(oTitle);
-            ObservationDate.setText(oDate);
-            ObservationTime.setText(oTime);
-            ObservationComment.setText(oComment);
+            Title.setText(observationTitle);
+            Date.setText(observationDate);
+            Time.setText(observationTime);
+            ObservationComment.setText(observationComment);
 
         }
 
-        AutoCompleteTextView pObservation= (AutoCompleteTextView)findViewById(R.id.observation_creator);
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,Observation);
-        dataAdapter.setDropDownViewResource((android.R.layout.simple_dropdown_item_1line));
-        pObservation.setAdapter(dataAdapter);
-        pObservation.setThreshold(256);
-        findViewById(R.id.observation_creator).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                pObservation.showDropDown();
-            }
-        });
         dateButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,19 +89,19 @@ public class ObserveCreator extends AppCompatActivity {
 
         EditText observeName= (EditText)findViewById(R.id.observation_creator);
         if(TextUtils.isEmpty(observeName.getText().toString())){
-            Toast t= Toast.makeText(this, "you must choose observation", Toast.LENGTH_SHORT);
+            Toast t= Toast.makeText(this, " choose observation", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
        AutoCompleteTextView observeDate= (AutoCompleteTextView)findViewById(R.id.observation_date);
         if(TextUtils.isEmpty(observeDate.getText().toString())){
-            Toast t= Toast.makeText(this, "you must choose date", Toast.LENGTH_SHORT);
+            Toast t= Toast.makeText(this, "choose date", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
         AutoCompleteTextView observeTime= (AutoCompleteTextView)findViewById(R.id.time);
         if(TextUtils.isEmpty(observeTime.getText().toString())){
-            Toast t= Toast.makeText(this, "you must choose time", Toast.LENGTH_SHORT);
+            Toast t= Toast.makeText(this, " choose time", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
@@ -152,8 +140,8 @@ public class ObserveCreator extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        MenuItem list = menu.findItem(R.id.AccessList);
-        MenuItem creator =menu.findItem(R.id.HikingCreator);
+        MenuItem list = menu.findItem(R.id.Hike_List);
+        MenuItem creator =menu.findItem(R.id.Make_Hike);
         list.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
@@ -175,6 +163,32 @@ public class ObserveCreator extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
 
     }
+    private void showDatePickerDialog(){
+        MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.datePicker().build();
+        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
+            @Override
+            public void onPositiveButtonClick(Object selection) {
+                Date.setText("" + materialDatePicker.getHeaderText());
+
+            }
+        });
+        materialDatePicker.show(getSupportFragmentManager(), "TAG");
+    }
+
+    private void showTimePickerDialog(){
+        TimePickerDialog.OnTimeSetListener onTimeSetListener= new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectHour, int selectMinute) {
+                hour = selectHour;
+                minute=selectMinute;
+                Time.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
+
+            }
+        };
+        TimePickerDialog timePickerDialog=new TimePickerDialog(this, onTimeSetListener,hour,minute,true);
+
+        timePickerDialog.show();
+    }
     private void  saveDetails(){
         DatabaseHelper dbHelper = new DatabaseHelper(getApplicationContext());
 
@@ -188,45 +202,20 @@ public class ObserveCreator extends AppCompatActivity {
         String date=observeDate.getText().toString();
         String time= observeTime.getText().toString();
         String comment= observeComment.getText().toString();
-        if(SendData){
+        if(Send){
 
-            dbHelper.insertObservationDetails(""+id2,name,date,time,comment);
-            Toast.makeText(this, "Observation has been created" , Toast.LENGTH_LONG).show();
+            dbHelper.insertObservationDetails(""+Pid,name,date,time,comment);
+            Toast.makeText(this, "Observation created" , Toast.LENGTH_LONG).show();
         }
-        else if(EditMode){
-            dbHelper.updateObservationDetails(""+id,""+id2,name,date,time,comment);
-            Toast.makeText(this, "Observation has been updated " , Toast.LENGTH_LONG).show();
+        else if(Edit){
+            dbHelper.updateObservationDetails(""+id,""+Pid,name,date,time,comment);
+            Toast.makeText(this, "Observation updated " , Toast.LENGTH_LONG).show();
         }
 
 
 
     }
-    private void showDatePickerDialog(){
-        MaterialDatePicker materialDatePicker = MaterialDatePicker.Builder.datePicker().build();
-        materialDatePicker.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener() {
-            @Override
-            public void onPositiveButtonClick(Object selection) {
-                ObservationDate.setText("" + materialDatePicker.getHeaderText());
 
-            }
-        });
-        materialDatePicker.show(getSupportFragmentManager(), "TAG");
-    }
-
-    private void showTimePickerDialog(){
-        TimePickerDialog.OnTimeSetListener onTimeSetListener= new TimePickerDialog.OnTimeSetListener() {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int selectHour, int selectMinute) {
-                hour = selectHour;
-                minute=selectMinute;
-                ObservationTime.setText(String.format(Locale.getDefault(),"%02d:%02d",hour,minute));
-
-            }
-        };
-        TimePickerDialog timePickerDialog=new TimePickerDialog(this, onTimeSetListener,hour,minute,true);
-
-        timePickerDialog.show();
-    }
 
 
 }

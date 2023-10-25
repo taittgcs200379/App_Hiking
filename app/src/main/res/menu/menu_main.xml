@@ -2,15 +2,15 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/AccessList"
+        android:id="@+id/Hike_List"
         android:checkable="false"
         android:enabled="true"
-        android:title="Hiking List"
+        android:title=" List"
         android:visible="true" />
     <item
-        android:id="@+id/HikingCreator"
+        android:id="@+id/Make_Hike"
         android:enabled="true"
-        android:title="Create Hiking"
+        android:title="Create"
         android:visible="true" />
     <item
         android:id="@+id/SearchItem"

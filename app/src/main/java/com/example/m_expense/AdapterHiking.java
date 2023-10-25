@@ -46,9 +46,7 @@ public class AdapterHiking extends RecyclerView.Adapter<AdapterHiking.HikingView
         String description=hikingModel.getHikingDescription();
 
         holder.hikingName.setText(name);
-        holder.hikingDestination.setText(destination);
-        holder.hikingDate.setText(date);
-        holder.hikingLevel.setText(level);
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +62,7 @@ public class AdapterHiking extends RecyclerView.Adapter<AdapterHiking.HikingView
             @Override
             public void onClick(View view) {
                 Intent edit = new Intent(context, MainActivity.class);
-                edit.putExtra("hike_id",id);
+                edit.putExtra("id",id);
                 edit.putExtra("name",name);
                 edit.putExtra("destination",destination);
                 edit.putExtra("date",date);
@@ -72,7 +70,7 @@ public class AdapterHiking extends RecyclerView.Adapter<AdapterHiking.HikingView
                 edit.putExtra("level",level);
                 edit.putExtra("choice",choice);
                 edit.putExtra("description",description);
-                edit.putExtra("EditMode",true);
+                edit.putExtra("Edit",true);
                 context.startActivity(edit);
             }
         });
@@ -82,7 +80,7 @@ public class AdapterHiking extends RecyclerView.Adapter<AdapterHiking.HikingView
                 Intent t = new Intent(context,ObserveCreator.class);
                 t.putExtra("hike_id",id);
                 t.putExtra("date",date);
-                t.putExtra("SendData",true);
+                t.putExtra("Save",true);
                 context.startActivity(t);
             }
         });
@@ -112,9 +110,6 @@ public class AdapterHiking extends RecyclerView.Adapter<AdapterHiking.HikingView
             super(itemView);
 
             hikingName=itemView.findViewById(R.id.hikingName);
-            hikingDestination=itemView.findViewById(R.id.hikingDestination);
-            hikingDate=itemView.findViewById(R.id.hikingDate);
-            hikingLevel=itemView.findViewById(R.id.hikingLevel);
             editHiking=itemView.findViewById(R.id.editHiking);
             deleteHiking=itemView.findViewById(R.id.deleteHiking);
             observeHiking=itemView.findViewById(R.id.observeHiking);
