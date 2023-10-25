@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsOfHike">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="DETAILS" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TableRow>
+
+                <TextView
+                    android:text="Name:"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detailName"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Location:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailDestination"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Date:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailDate"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Length:"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detailLength"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Level:"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/detailLevel"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Parking:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailChoice"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Description:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailDescription"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/observationRV"
+            android:layout_width="424dp"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="1dp"
+            tools:listitem="@layout/observation_item" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

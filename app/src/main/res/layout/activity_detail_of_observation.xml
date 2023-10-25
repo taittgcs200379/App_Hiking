@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailOfObservation">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:layout_marginTop="10dp"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            tools:text="DETAILS" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TableRow>
+
+                <TextView
+                    android:text="Observation:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailName"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+
+
+            <TableRow>
+
+                <TextView
+                    android:text="Date:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailDate"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:text="Time:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailTime"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:text="Comment:"
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+
+                <TextView
+                    android:id="@+id/detailComment"
+                    android:layout_marginStart="10dp"
+                    android:padding="5dp"
+                    android:text=" .............."
+                    android:textSize="15dp"
+                    android:textStyle="italic" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

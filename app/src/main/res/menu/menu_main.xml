@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/AccessList"
+        android:checkable="false"
+        android:enabled="true"
+        android:title="Hiking List"
+        android:visible="true" />
+    <item
+        android:id="@+id/HikingCreator"
+        android:enabled="true"
+        android:title="Create Hiking"
+        android:visible="true" />
+    <item
+        android:id="@+id/SearchItem"
+        android:title="Search"
+        android:visible="true"
+        app:showAsAction="ifRoom|withText"
+        app:actionViewClass="android.widget.SearchView"/>
+</menu>
